@@ -1,0 +1,31 @@
+
+#!/bin/bash
+# dumper.sh / Assignment2 - Command Line Arguments
+# ZW / CS5600 / Northeastern University
+# Fall 2025 / Sep 16, 2025
+#
+# Description:
+#   This shell script calls the compiled C program (arger-wang)
+#   with different command-line arguments.
+#   It checks the program’s return code:
+#     0  -> success
+#    -1  -> error
+
+# Check if at least one argument is provided
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <option> <text...>"
+    exit 1
+fi
+
+# Call the C program with all arguments passed to this script
+./arger-wang "$@"
+
+# Capture the return code from the C program
+ret=$?
+
+# Check return code
+if [ $ret -eq 0 ]; then
+    echo "Program executed successfully."
+else
+    echo "Program returned an error (return code $ret)."
+fi
